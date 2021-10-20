@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BenjamminCrafts.Website.Models;
+using BenjamminCrafts.WebSite.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +13,23 @@ namespace BenjamminCrafts.Website.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public JsonFileProductService ProductService;
+        public IEnumerable<Product> Products { get; private set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(
+            ILogger<IndexModel> logger, 
+            JsonFileProductService productService)
         {
             _logger = logger;
+            ProductService = productService;
         }
 
+        /// <summary>
+        /// Gets the list of products
+        /// </summary>
         public void OnGet()
         {
-
+            Products = ProductService.GetProducts();
         }
     }
 }
