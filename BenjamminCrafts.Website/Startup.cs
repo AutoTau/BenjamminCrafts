@@ -28,6 +28,7 @@ namespace BenjamminCrafts.Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddServerSideBlazor();
             services.AddTransient<JsonFileProductService>();
             services.AddControllers();
         }
@@ -57,6 +58,7 @@ namespace BenjamminCrafts.Website
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
+                endpoints.MapBlazorHub();
             });
         }
     }

@@ -25,6 +25,16 @@ namespace BenjamminCrafts.Website.Controllers
         {
             return ProductService.GetProducts();
         }
+        
+        [Route("Rate")]
+        [HttpGet]
+        public ActionResult Get(
+            [FromQuery]string productId, 
+            [FromQuery]int rating)
+        {
+            ProductService.AddRating(productId, rating);
+            return Ok();
+        }
 
     }
 }
